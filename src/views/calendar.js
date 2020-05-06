@@ -8,13 +8,25 @@ const Calendar = () => {
         <FullCalendar 
             defaultView="resourceTimeGrid"
             plugins={[resourceTimeGridPlugin]}
+            customButtons={{
+                    addAvailability: {
+                        text: 'Add Availability',
+                        click: function() {
+                            alert('testing');
+                        },
+                    },
+            }}
+            header={{
+                left: 'title',
+                center: '',
+                right: 'addAvailability today prev,next'
+            }}
             
             // events={[
             // { title: 'event 1', date: '2020-05-05', time: '2am' },
             // { title: 'event 2', date: '2020-05-05', time: '12pm' }
             // ]}
             resources={[{id: 'a', title: 'Doctor'}, {id: 'b', title: 'Assistant'}, {id: 'c', title: 'Hygienist'}]}
-            
             datesAboveResources={true}
             schedulerLicenseKey={'GPL-My-Project-Is-Open-Source'}
         />
