@@ -47,10 +47,5 @@
       "last 1 safari version"
     ]
   },
-  "main": "server/server.js",
-  "devDependencies": {
-    "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
-    "webpack": "^4.43.0"
-  }
+  "main": "server/server.js"
 }
