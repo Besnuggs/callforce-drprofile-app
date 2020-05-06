@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import FullCalendar from '@fullcalendar/react';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
+import Modal from '../components/Modal';
+import '../stylings/calendar.css';
 
 const Calendar = () => {
 
