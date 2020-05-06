@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 
 const ModalPopup = (props) => {
   const {show, toggleModal} = props;
-  const [form, setForm] = useState({column: '', date: '', startTime: '', endTime: ''})
+  const [form, setForm] = useState({column: 'Choose...', date: '', startTime: '', endTime: ''})
 
   
   function submitForm(){
@@ -31,10 +31,17 @@ const ModalPopup = (props) => {
           <Form>
             <Form.Group as={Col} controlId="formGridColumn">
               <Form.Label>Column:</Form.Label>
+              <Form.Control as="select" value={form.column}>
+              <option>Choose...</option>
+              <option>Doctor</option>
+              <option>Assistant</option>
+              <option>Hygienist</option>
+            </Form.Control>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridDate">
               <Form.Label>Date:</Form.Label>
+              
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridStartTime">

@@ -5,7 +5,6 @@ import ModalPopup from '../components/Modal';
 import '../stylings/calendar.css';
 
 const Calendar = () => {
-
     const [show, setShow] = useState(true)
 
     function toggleModal(){
