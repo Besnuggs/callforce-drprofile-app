@@ -4,6 +4,10 @@ import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 
 const Calendar = () => {
 
+    function activateModal() {
+        alert('hitting function.')
+    }
+
     return(
         <FullCalendar 
             defaultView="resourceTimeGrid"
@@ -12,7 +16,7 @@ const Calendar = () => {
                     addAvailability: {
                         text: 'Add Availability',
                         click: function() {
-                            alert('testing');
+                            activateModal();
                         },
                     },
             }}
