@@ -1,0 +1,10 @@
+#modal-outer{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    border-radius: '2px';
+    background-color: blue;
+    z-index: 2;
+}

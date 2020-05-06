@@ -1,16 +1,29 @@
 import React, {useState, useEffect} from 'react';
 import FullCalendar from '@fullcalendar/react';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
-import Modal from '../components/Modal';
+import ModalPopup from '../components/Modal';
 import '../stylings/calendar.css';
 
 const Calendar = () => {
 
-    function activateModal() {
-        alert('hitting function.')
+    const [show, setShow] = useState(false)
+
+    function toggleModal(){
+        if ( show ){
+            setShow(false)
+        } else {
+            setShow(true)
+        }
     }
 
+    console.log(show, toggleModal)
     return(
+        <>
+        <ModalPopup 
+            show={show}
+            toggleModal={toggleModal}
+        />
+       
         <FullCalendar 
             defaultView="resourceTimeGrid"
             plugins={[resourceTimeGridPlugin]}
@@ -18,7 +31,7 @@ const Calendar = () => {
                     addAvailability: {
                         text: 'Add Availability',
                         click: function() {
-                            activateModal();
+                            toggleModal();
                         },
                     },
             }}
@@ -36,6 +49,8 @@ const Calendar = () => {
             datesAboveResources={true}
             schedulerLicenseKey={'GPL-My-Project-Is-Open-Source'}
         />
+
+        </>
     )
 }
 
