@@ -3,17 +3,23 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const ModalPopup = (props) => {
   const {show, toggleModal} = props;
-  const [form, setForm] = useState({column: 'Choose...', date: '', startTime: '', endTime: ''})
+  const [form, setForm] = useState({column: 'Choose...', date: new Date(), startTime: '', endTime: ''})
 
   
   function submitForm(){
-
     console.log('saving form data')
     toggleModal()
+  }
+
+  function handleChange(e){
+    if(e instanceof Date){
+      setForm({...form, date:e})
+    }
   }
 
     return (
@@ -32,16 +38,19 @@ const ModalPopup = (props) => {
             <Form.Group as={Col} controlId="formGridColumn">
               <Form.Label>Column:</Form.Label>
               <Form.Control as="select" value={form.column}>
-              <option>Choose...</option>
-              <option>Doctor</option>
-              <option>Assistant</option>
-              <option>Hygienist</option>
-            </Form.Control>
+                <option>Choose...</option>
+                <option>Doctor</option>
+                <option>Assistant</option>
+                <option>Hygienist</option>
+              </Form.Control>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridDate">
               <Form.Label>Date:</Form.Label>
-              
+              <DatePicker
+              selected={form.date}
+              onChange={handleChange}
+              />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridStartTime">
