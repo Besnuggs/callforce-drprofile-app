@@ -9,8 +9,7 @@ const ModalPopup = (props) => {
   const {show, toggleModal} = props;
   const [form, setForm] = useState({column: '', date: '', startTime: '', endTime: ''})
 
-  console.log(show, toggleModal)
-
+  
   function submitForm(){
 
     console.log('saving form data')
@@ -30,17 +29,22 @@ const ModalPopup = (props) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group controlId="formBasic">
-              <Col>
-              <Form.Label>Select column:</Form.Label>
-
-              <Form.Label>Select date:</Form.Label>
-                
-              <Form.Label>Select start time:</Form.Label>
-              
-              <Form.Label>Select end time:</Form.Label>
-              </Col>
+            <Form.Group as={Col} controlId="formGridColumn">
+              <Form.Label>Column:</Form.Label>
             </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridDate">
+              <Form.Label>Date:</Form.Label>
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridStartTime">
+              <Form.Label>Start:</Form.Label>
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridEndTime">
+              <Form.Label>End:</Form.Label>
+            </Form.Group>
+            
           </Form>
         </Modal.Body>
         <Modal.Footer>

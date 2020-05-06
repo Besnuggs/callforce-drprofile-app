@@ -6,7 +6,7 @@ import '../stylings/calendar.css';
 
 const Calendar = () => {
 
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(true)
 
     function toggleModal(){
         if ( show ){
@@ -16,7 +16,7 @@ const Calendar = () => {
         }
     }
 
-    console.log(show, toggleModal)
+    
     return(
         <>
         <ModalPopup 
