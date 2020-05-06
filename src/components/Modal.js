@@ -9,49 +9,41 @@ import TimePicker from 'react-time-picker';
 
 const ModalPopup = (props) => {
   const {show, toggleModal} = props;
-  const [form, setForm] = useState({column: 'Choose...', date: new Date()})
-  const [startTime, setStartTime] = useState(new Date(new Date().setHours(0,0,0,0)))
-  const [endTime, setEndTime] = useState(new Date(new Date().setHours(12,0,0,0)))
-
-  function createColumnOptions(){
-    const options = []
-
-    return(
-      {options}
-    )
-  }
+  const [form, setForm] = useState({column: 'Choose...', date: new Date()});
+  const [startTime, setStartTime] = useState(new Date(new Date().setHours(0,0,0,0)));
+  const [endTime, setEndTime] = useState(new Date(new Date().setHours(12,0,0,0)));
 
   function submitForm(){
-    console.log(form, startTime, endTime, 'state to be submitted.')
+    console.log(form, startTime, endTime, 'state to be submitted.');
     if(startTime > endTime){
-      return alert('Warning: startTime is less than endTime')
+      return alert('Warning: startTime is less than endTime');
     }
-    toggleModal()
+    toggleModal();
   }
 
   function handleStartTime(e){
-    setStartTime(e)
+    setStartTime(e);
   }
 
   function handleEndTime(e){
-    setEndTime(e)
+    setEndTime(e);
   }
 
   function handleChange(e){
     if(e instanceof Date){
-      setForm({...form, date: e})
+      setForm({...form, date: e});
     } else {
-      setForm({...form, column: e.target.value})
+      setForm({...form, column: e.target.value});
     }
   }
 
     return (
         <Modal
-        show={show}
-        animation={true}
-        size="md"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
+          show={show}
+          animation={true}
+          size="md"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
         >
         <Modal.Header>
           <Modal.Title>Save Availability</Modal.Title>
@@ -74,28 +66,28 @@ const ModalPopup = (props) => {
             <Form.Group as={Col} controlId="formGridDate">
               <Form.Label>Date:</Form.Label>
               <DatePicker
-              selected={form.date}
-              onChange={handleChange}
+                selected={form.date}
+                onChange={handleChange}
               />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridStartTime">
               <Form.Label>Start:</Form.Label>
               <TimePicker
-               name='startTime'
-               onChange={handleStartTime}
-               value={startTime}
-               disableClock={true}
+                name='startTime'
+                onChange={handleStartTime}
+                value={startTime}
+                disableClock={true}
               />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridEndTime">
               <Form.Label>End:</Form.Label>
               <TimePicker
-               name='endTime'
-               onChange={handleEndTime}
-               value={endTime}
-               disableClock={true}
+                name='endTime'
+                onChange={handleEndTime}
+                value={endTime}
+                disableClock={true}
               />
             </Form.Group>
             
