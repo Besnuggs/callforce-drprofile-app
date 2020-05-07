@@ -8,7 +8,8 @@ const calendarState = {
         phone: '',
         address: '',
         name: ''
-    }
+    },
+    nextEventId: null
 }
 
 const calendar = (state=calendarState, action) => {
@@ -29,6 +30,7 @@ const calendar = (state=calendarState, action) => {
                 hygientistEvents = clients[name].hygientists.availabilities,
                 consolidatedEvents = doctorEvents.concat(hygientistEvents, assistantEvents)
             
+            const nextEventId = consolidatedEvents.length + 1;    
             delta = {
                 events: { $set: consolidatedEvents },
                 clinicInfo: {
@@ -36,7 +38,8 @@ const calendar = (state=calendarState, action) => {
                     phone: { $set: phone },
                     address: { $set: address },
                     name: { $set: name },
-                }
+                },
+                nextEventId: { $set: nextEventId }
             }
             console.log(action, 'db success')
             break;

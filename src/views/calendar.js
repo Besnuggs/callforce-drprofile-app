@@ -7,7 +7,7 @@ import ModalPopup from '../components/Modal';
 import '../stylings/calendar.css';
 
 const Calendar = (props) => {
-    const {events, clinic, getDemoDb} = props
+    const {events, clinic, nextId, getDemoDb, postDemoDb} = props
     useEffect(() => {
         getDemoDb()
     }, [])
@@ -35,6 +35,8 @@ const Calendar = (props) => {
             toggleModal={toggleModal}
             events={events}
             clinicInfo={clinic}
+            nextId={nextId}
+            postDemoDb={postDemoDb}
         />
 
         <Header 

@@ -8,8 +8,7 @@ export const POST_DEMO_DB_SUCCESS = 'POST_DEMO_DB_SUCCESS';
 export const POST_DEMO_DB_FAILURE = 'POST_DEMO_DB_FAILURE';
 
 export function getDemoDB () {
-    console.log('Get DB TIE!')
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(getDemoDBStart());
         return axios.get('/api/getDb/').then((res) => {
             const {data} = res;
@@ -35,8 +34,29 @@ const getDemoDBFailure = (error) => ({
     payload: error
 })
 
-export function postDEMODB () {
-    return {
-
+export function postDemoDB (event) {
+    console.log(event)
+    return (dispatch) => {
+        dispatch(postDemoDBStarted());
+        return axios.post('/api/postDb').then((res) => {
+            const { data } = res;
+            dispatch(postDemoDBSuccess(data));
+        }).catch((err) => {
+            dispatch(postDemoDBFailure(err));
+        })
     }
 };
+
+const postDemoDBStarted = () => ({
+    type: POST_DEMO_DB_SUCCESS
+})
+
+const postDemoDBSuccess = (events) => ({
+    type: POST_DEMO_DB_SUCCESS,
+    payload: events
+})
+
+const postDemoDBFailure = (error) => ({
+    type: POST_DEMO_DB_FAILURE,
+    payload: error
+})

@@ -6,9 +6,10 @@ import Col from 'react-bootstrap/Col';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from 'react-time-picker';
+import { postDemoDB } from '../actions/calendarActions';
 
 const ModalPopup = (props) => {
-  const {show, toggleModal, events, clinicInfo} = props;
+  const {show, toggleModal, events, clinicInfo, nextId, postDemoDb} = props;
   const [form, setForm] = useState({column: 'Choose...', date: new Date()});
   const [startTime, setStartTime] = useState(new Date(new Date().setHours(0,0,0,0)));
   const [endTime, setEndTime] = useState(new Date(new Date().setHours(12,0,0,0)));
@@ -20,7 +21,15 @@ const ModalPopup = (props) => {
     } else if (overlappingTimes()){
       return alert('Warning: Time Slots overlap existing time slots.')
     }
-    console.log(form, startTime, endTime, 'state to be submitted.');
+    const event={
+      title: 'Available',
+      start: new Date(form.date),
+      end: new Date(form.date),
+      resourceId: form.column,
+      id: nextId
+    }
+
+    postDemoDb(event)
     toggleModal();
   }
 
@@ -43,7 +52,11 @@ const ModalPopup = (props) => {
     for(let i = 0; i < eventsOfChosenColumn.length; i++){
         const eventStartTime = eventsOfChosenColumn[i].start.match(getTimeRegex)[0],
           eventStopTime = eventsOfChosenColumn[i].end.match(getTimeRegex)[0];
-          
+        if(startTime > eventStartTime && startTime < eventStopTime){
+          return true
+        } else if (endTime > eventStartTime && endTime < eventStopTime){
+          return true
+        }
     }
     return false;
   }

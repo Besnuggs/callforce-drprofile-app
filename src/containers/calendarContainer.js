@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
 import Calendar from '../views/Calendar';
-import { getDemoDB } from '../actions/calendarActions'
+import { getDemoDB, postDemoDB } from '../actions/calendarActions'
 
 const mapStateToProps = state => {
     return {
         events: state.calendar.events,
-        clinic: state.calendar.clinicInfo
+        clinic: state.calendar.clinicInfo,
+        nextId: state.calendar.nextEventId
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getDemoDb: () => { dispatch(getDemoDB()) }
+        getDemoDb: () => { dispatch(getDemoDB()) },
+        postDemoDb: (event) => { dispatch(postDemoDB(event))}
     };
 };
 
