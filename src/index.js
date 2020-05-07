@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/root'
@@ -9,7 +9,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 //Redux, especially combinedReducers, is total overkill/unnecessary for this demo, but I'd like to demo async actions with a redux store for a much larger application.
-const store = createStore(rootReducer(), applyMiddleware(thunk))
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose,
+  store = createStore(rootReducer(), composeEnhancer(applyMiddleware(thunk)))
 
 const render = () => {
   ReactDOM.render(

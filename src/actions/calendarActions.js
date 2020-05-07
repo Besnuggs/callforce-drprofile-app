@@ -20,24 +20,31 @@ export const DELETE_DEMO_DB_SUCCESS = 'DELETE_DEMO_DB_SUCCESS';
 export const DELETE_DEMO_DB_FAILURE = 'DELETE_DEMO_DB_FAILURE';
 
 export function getDemoDB () {
-
+    console.log('Get DB TIE!')
     return (dispatch, getState) => {
         dispatch(getDemoDBStart());
-        
+        return axios.get('/api/getDb/').then((res) => {
+            console.log(res)
+            dispatch(getDemoDBSuccess(res))
+        }).catch((err) => {
+            dispatch(getDemoDBFailure(err))
+        })
     }
 
 };
 
-const getDemoDBStart = (db) => ({
-    type: db
+const getDemoDBStart = () => ({
+    type: GET_DEMO_DB_STARTED
 })
 
-const getDemoDBSuccess = () => ({
-
+const getDemoDBSuccess = (db) => ({
+    type: GET_DEMO_DB_SUCCESS,
+    payload: db
 })
 
 const getDemoDBFailure = (error) => ({
-    type: error
+    type: GET_DEMO_DB_SUCCESS,
+    payload: error
 })
 
 export function putDEMODB () {

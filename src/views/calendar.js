@@ -7,6 +7,12 @@ import '../stylings/calendar.css';
 
 const Calendar = (props) => {
     console.log(props)
+    const {getDemoDb} = props
+    useEffect(() => {
+        getDemoDb()
+    }, [])
+
+    //Modal
     const [show, setShow] = useState(true)
 
     function toggleModal(){
@@ -42,11 +48,11 @@ const Calendar = (props) => {
                 right: 'addAvailability today prev,next'
             }}
             
-            // events={[
-            // { title: 'event 1', date: '2020-05-05', time: '2am' },
-            // { title: 'event 2', date: '2020-05-05', time: '12pm' }
-            // ]}
-            resources={[{id: 'a', title: 'Doctor'}, {id: 'b', title: 'Assistant'}, {id: 'c', title: 'Hygienist'}]}
+            events={[
+            { title: 'Available', date: '2020-05-06', startTime: '11:00:00', endTime: '11:30:00', resourceId: 'doctor' },
+            { title: 'event 2', date: '2020-05-05', time: '12pm' }
+            ]}
+            resources={[{id: 'doctor', title: 'Doctor'}, {id: 'assistant', title: 'Assistant'}, {id: 'hygienist', title: 'Hygienist'}]}
             datesAboveResources={true}
             schedulerLicenseKey={'GPL-My-Project-Is-Open-Source'}
         />

@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require('uuid');
+
 const demoDataBaseStructure = {
     "clients": {
         "Highland Family Practice": {
@@ -6,7 +8,7 @@ const demoDataBaseStructure = {
                 
             },
             "dentists": {
-                
+
             },
             "hygientists:": {
 
@@ -19,7 +21,16 @@ const demoDataBaseStructure = {
 
 module.exports={
     getData: (req,res) => {
+        console.log(req)
+        res.status(200).send(demoDataBaseStructure)
+    },
+    postData: (req, res) => {
+
+    },
+    putData: (req, res) => {
+
+    },
+    deleteData: (req, res) => {
 
     }
-
 }
