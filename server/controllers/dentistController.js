@@ -6,8 +6,8 @@ const demoDataBaseStructure = {
                 "availabilities": [
                     {
                         "title": 'Available',
-                        "startTime": new Date(new Date().setHours(14,0,0,0)),
-                        "endTime": new Date(new Date().setHours(16,0,0,0)),
+                        "start": new Date(new Date().setHours(14,0,0,0)),
+                        "end": new Date(new Date().setHours(16,0,0,0)),
                         "resourceId": 'assistant',
                         "id": 2
                     }
@@ -17,8 +17,8 @@ const demoDataBaseStructure = {
                 "availabilities": [
                     {
                         "title": 'Available',
-                        "startTime": new Date(new Date().setHours(8,0,0,0)),
-                        "endTime": new Date(new Date().setHours(12,0,0,0)),
+                        "start": new Date(new Date().setHours(8,0,0,0)),
+                        "end": new Date(new Date().setHours(12,0,0,0)),
                         "resourceId": 'doctor',
                         "id": 1
                     }
@@ -28,8 +28,8 @@ const demoDataBaseStructure = {
                 "availabilities": [
                     {
                         "title": 'Available',
-                        "startTime": new Date(new Date().setHours(12,0,0,0)),
-                        "endTime": new Date(new Date().setHours(14,0,0,0)),
+                        "start": new Date(new Date().setHours(12,0,0,0)),
+                        "end": new Date(new Date().setHours(14,0,0,0)),
                         "resourceId": 'hygienist',
                         "id": 3
                     }

@@ -8,17 +8,44 @@ import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from 'react-time-picker';
 
 const ModalPopup = (props) => {
-  const {show, toggleModal} = props;
+  const {show, toggleModal, events, clinicInfo} = props;
   const [form, setForm] = useState({column: 'Choose...', date: new Date()});
   const [startTime, setStartTime] = useState(new Date(new Date().setHours(0,0,0,0)));
   const [endTime, setEndTime] = useState(new Date(new Date().setHours(12,0,0,0)));
 
   function submitForm(){
-    console.log(form, startTime, endTime, 'state to be submitted.');
-    if(startTime > endTime){
-      return alert('Warning: startTime is less than endTime');
+    //Edge Cases: StartTime is ahead of EndTime, or if the submitted time interferes with an existing time slot.
+    if(!formTimesValidator()){
+      return alert('Warning: Invalid Time Slot. Start time is later than end time.');
+    } else if (overlappingTimes()){
+      return alert('Warning: Time Slots overlap existing time slots.')
     }
+    console.log(form, startTime, endTime, 'state to be submitted.');
     toggleModal();
+  }
+
+  function formTimesValidator(){
+    if(startTime > endTime) {
+      return false;
+    } else {
+      return true;
+    };
+  }
+
+  function overlappingTimes(){
+    let eventsOfChosenColumn,
+      getTimeRegex = /\d+:\d+:\d+/;
+    if( events ){
+      eventsOfChosenColumn = events.filter(event => event.resourceId === form.column);
+    } else {
+      return false;
+    }
+    for(let i = 0; i < eventsOfChosenColumn.length; i++){
+        const eventStartTime = eventsOfChosenColumn[i].start.match(getTimeRegex)[0],
+          eventStopTime = eventsOfChosenColumn[i].end.match(getTimeRegex)[0];
+          
+    }
+    return false;
   }
 
   function handleStartTime(e){
@@ -46,7 +73,7 @@ const ModalPopup = (props) => {
           centered
         >
         <Modal.Header>
-          <Modal.Title>Save Availability</Modal.Title>
+          <Modal.Title>Save Availability: {clinicInfo.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>

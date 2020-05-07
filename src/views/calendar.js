@@ -33,6 +33,8 @@ const Calendar = (props) => {
         <ModalPopup 
             show={show}
             toggleModal={toggleModal}
+            events={events}
+            clinicInfo={clinic}
         />
 
         <Header 
