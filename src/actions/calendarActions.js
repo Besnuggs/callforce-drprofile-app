@@ -38,7 +38,14 @@ export function postDemoDB (event) {
     console.log(event)
     return (dispatch) => {
         dispatch(postDemoDBStarted());
-        return axios.post('/api/postDb', {event}).then((res) => {
+        return axios({
+            method: 'POST',
+            url: '/api/postDb/',
+            data: event,
+            headers: {
+                'content-type': 'application/json',
+           },
+        }).then((res) => {
             const { data } = res;
             dispatch(postDemoDBSuccess(data));
         }).catch((err) => {

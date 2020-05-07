@@ -1,4 +1,4 @@
-import { GET_DEMO_DB_STARTED, GET_DEMO_DB_SUCCESS, GET_DEMO_DB_FAILURE } from '../actions/calendarActions.js';
+import { GET_DEMO_DB_STARTED, GET_DEMO_DB_SUCCESS, GET_DEMO_DB_FAILURE, POST_DEMO_DB_STARTED, POST_DEMO_DB_SUCCESS, POST_DEMO_DB_FAILURE } from '../actions/calendarActions.js';
 import update from 'immutability-helper';
 
 const calendarState = {
@@ -45,6 +45,15 @@ const calendar = (state=calendarState, action) => {
             break;
         case GET_DEMO_DB_FAILURE:
             console.error('%cFailure: Unable to retrieve db. Check Network tab.', 'color:red')
+            break;
+        case POST_DEMO_DB_STARTED:
+            console.log('Posting to db');
+            break;
+        case POST_DEMO_DB_SUCCESS:
+            console.log('Success', action.payload)
+            break;
+        case POST_DEMO_DB_FAILURE:
+            console.log('Failure', action.payload);
             break;
         default:
             return state;

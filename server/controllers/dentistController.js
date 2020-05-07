@@ -42,12 +42,12 @@ const demoDataBaseStructure = {
 }
 
 module.exports={
-    getData: (req,res) => {
+    getData: (req, res) => {
         res.status(200).send(demoDataBaseStructure)
     },
     postData: (req, res) => {
         
-        console.log(req.body, req.params, 'hitting ctrl')
+        
         res.status(200).send(demoDataBaseStructure)
     }
 }
