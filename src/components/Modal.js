@@ -10,7 +10,7 @@ import { postDemoDB } from '../actions/calendarActions';
 
 const ModalPopup = (props) => {
   const {show, toggleModal, events, clinicInfo, nextId, postDemoDb} = props;
-  const [form, setForm] = useState({column: 'Choose...', date: new Date()});
+  const [form, setForm] = useState({column: 'doctor', date: new Date()});
   const [startTime, setStartTime] = useState(new Date(new Date().setHours(0,0,0,0)));
   const [endTime, setEndTime] = useState(new Date(new Date().setHours(12,0,0,0)));
 
@@ -97,9 +97,9 @@ const ModalPopup = (props) => {
                 value={form.column}
                 onChange={handleChange}
               >
-                <option key="1" value="Doctor">Doctor</option>
-                <option key="2" value="Assistant">Assistant</option>
-                <option key="3" value="Hygienist">Hygienist</option>
+                <option key="1" value="doctor">Doctor</option>
+                <option key="2" value="assistant">Assistant</option>
+                <option key="3" value="hygienist">Hygienist</option>
               </Form.Control>
             </Form.Group>
 
