@@ -11,24 +11,29 @@ import { postDemoDB } from '../actions/calendarActions';
 const ModalPopup = (props) => {
   const {show, toggleModal, events, clinicInfo, nextId, postDemoDb} = props;
   const [form, setForm] = useState({column: 'doctor', date: new Date()});
-  const [startTime, setStartTime] = useState(new Date(new Date().setHours(0,0,0,0)));
-  const [endTime, setEndTime] = useState(new Date(new Date().setHours(12,0,0,0)));
+  const [startTime, setStartTime] = useState('08:00');
+  const [endTime, setEndTime] = useState('18:00');
 
   function submitForm(){
     //Edge Cases: StartTime is ahead of EndTime, or if the submitted time interferes with an existing time slot.
+    const startDateTime = timeToDateFormatter(startTime),
+      endDateTime = timeToDateFormatter(endTime);
+    console.log(startDateTime, endDateTime, 'TIME')
     if(!formTimesValidator()){
       return alert('Warning: Invalid Time Slot. Start time is later than end time.');
-    } else if (overlappingTimes()){
+    } else if (overlappingTimes(startDateTime, endDateTime)){
       return alert('Warning: Time Slots overlap existing time slots.')
     }
+
     const event={
       title: 'Available',
-      start: new Date(form.date),
-      end: new Date(form.date),
+      start: startTime,
+      end: endTime,
       resourceId: form.column,
       id: nextId
     }
 
+    console.log(event)
     postDemoDb(event)
     toggleModal();
   }
@@ -41,9 +46,12 @@ const ModalPopup = (props) => {
     };
   }
 
-  function overlappingTimes(){
+  function overlappingTimes(startDateTime, endDateTime){
     let eventsOfChosenColumn,
       getTimeRegex = /\d+:\d+:\d+/;
+    let startingTime = startDateTime.match(getTimeRegex)[0],
+      endingTime = endDateTime.match(getTimeRegex)[0];
+
     if( events ){
       eventsOfChosenColumn = events.filter(event => event.resourceId === form.column);
     } else {
@@ -52,13 +60,26 @@ const ModalPopup = (props) => {
     for(let i = 0; i < eventsOfChosenColumn.length; i++){
         const eventStartTime = eventsOfChosenColumn[i].start.match(getTimeRegex)[0],
           eventStopTime = eventsOfChosenColumn[i].end.match(getTimeRegex)[0];
-        if(startTime > eventStartTime && startTime < eventStopTime){
-          return true
-        } else if (endTime > eventStartTime && endTime < eventStopTime){
-          return true
+
+        console.log(eventStartTime, eventStopTime, startingTime, endingTime)
+        if(startingTime >= eventStartTime && startingTime <= eventStopTime){
+          return true;
+        } else if (endingTime >= eventStartTime && endingTime <= eventStopTime){
+          return true;
+        } else if (startingTime <= eventStartTime && endingTime >= eventStartTime){
+          return true;
         }
     }
     return false;
+  }
+
+  function timeToDateFormatter(time){
+    console.log(time)
+    const timeArray = time.match(/[0-9]{2}/g),
+      hours = timeArray[0],
+      minutes = timeArray[1];
+    console.log(hours, minutes, 'CHECKING')
+    return new Date(new Date(form.date).setHours(hours, minutes, 0, 0)).toISOString();
   }
 
   function handleStartTime(e){
