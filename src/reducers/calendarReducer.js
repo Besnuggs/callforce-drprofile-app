@@ -1,14 +1,14 @@
 import {GET_DEMO_DB} from '../actions/calendarActions.js'
 
 const calendarState = {
-    dentists: {},
+    dentists: {events: 'first event'},
     assistants: {},
     hygientists: {},
     clinicInfo: {}
 }
 
 const calendar = (state=calendarState, action) => {
-    const delta={};
+    let delta={};
     switch(action.type){
         case GET_DEMO_DB:
         console.log(action.type, action)
@@ -16,5 +16,10 @@ const calendar = (state=calendarState, action) => {
 
             }
         break;
+        default:
+            return state;
     }
+    return delta ? delta : {}
 }
+
+export default calendar;

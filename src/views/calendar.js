@@ -4,7 +4,8 @@ import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 import ModalPopup from '../components/Modal';
 import '../stylings/calendar.css';
 
-const Calendar = () => {
+const Calendar = (props) => {
+    console.log(props)
     const [show, setShow] = useState(true)
 
     function toggleModal(){
