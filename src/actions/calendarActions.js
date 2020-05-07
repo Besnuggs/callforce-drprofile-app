@@ -24,8 +24,8 @@ export function getDemoDB () {
     return (dispatch, getState) => {
         dispatch(getDemoDBStart());
         return axios.get('/api/getDb/').then((res) => {
-            console.log(res)
-            dispatch(getDemoDBSuccess(res))
+            const {data} = res;
+            dispatch(getDemoDBSuccess(data))
         }).catch((err) => {
             dispatch(getDemoDBFailure(err))
         })
@@ -43,7 +43,7 @@ const getDemoDBSuccess = (db) => ({
 })
 
 const getDemoDBFailure = (error) => ({
-    type: GET_DEMO_DB_SUCCESS,
+    type: GET_DEMO_DB_FAILURE,
     payload: error
 })
 

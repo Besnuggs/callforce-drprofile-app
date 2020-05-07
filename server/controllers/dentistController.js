@@ -1,17 +1,21 @@
-const { v4: uuidv4 } = require('uuid');
-
 const demoDataBaseStructure = {
     "clients": {
         "Highland Family Practice": {
             "owner": "Dr. Hopper",
             "assistants": {
-                
+                "availabilities": [
+
+                ]
             },
             "dentists": {
+                "availabilities": [
 
+                ]
             },
             "hygientists:": {
+                "availabilities": [
 
+                ]
             },
             "address": "4460 Highland Dr, Ste 400, Salt Lake City, UT 84124",
             "phone": "+1 801 272 4111"

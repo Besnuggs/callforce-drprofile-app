@@ -3,7 +3,12 @@ import update from 'immutability-helper';
 
 const calendarState = {
     events: [],
-    clinicInfo: {}
+    clinicInfo: {
+        owner: '',
+        phone: '',
+        address: '',
+        name: ''
+    }
 }
 
 const calendar = (state=calendarState, action) => {
@@ -13,6 +18,20 @@ const calendar = (state=calendarState, action) => {
             console.log(action.type, action, 'getting db')
             break;
         case GET_DEMO_DB_SUCCESS:
+            const {payload: {clients}} = action;
+            const name = Object.keys(clients).join(''),
+                owner = clients[name].owner,
+                phone = clients[name].phone,
+                address = clients[name].address
+            delta = {
+                events: {$set: []},
+                clinicInfo: {
+                    owner: { $set: owner },
+                    phone: { $set: phone },
+                    address: { $set: address },
+                    name: { $set: name },
+                }
+            }
             console.log(action, 'db success')
             break;
         case GET_DEMO_DB_FAILURE:

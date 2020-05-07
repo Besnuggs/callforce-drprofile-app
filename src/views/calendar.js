@@ -7,10 +7,14 @@ import '../stylings/calendar.css';
 
 const Calendar = (props) => {
     console.log(props)
-    const {getDemoDb} = props
+    const {events, clinicInfo, getDemoDb} = props
     useEffect(() => {
         getDemoDb()
     }, [])
+
+    useEffect(() => {
+        console.log(clinicInfo)
+    }, [clinicInfo])
 
     //Modal
     const [show, setShow] = useState(true)
