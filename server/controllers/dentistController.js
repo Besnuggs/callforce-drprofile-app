@@ -4,17 +4,35 @@ const demoDataBaseStructure = {
             "owner": "Dr. Hopper",
             "assistants": {
                 "availabilities": [
-
+                    {
+                        "title": 'Available',
+                        "startTime": new Date(new Date().setHours(14,0,0,0)),
+                        "endTime": new Date(new Date().setHours(16,0,0,0)),
+                        "resourceId": 'assistant',
+                        "id": 2
+                    }
                 ]
             },
-            "dentists": {
+            "doctors": {
                 "availabilities": [
-
+                    {
+                        "title": 'Available',
+                        "startTime": new Date(new Date().setHours(8,0,0,0)),
+                        "endTime": new Date(new Date().setHours(12,0,0,0)),
+                        "resourceId": 'doctor',
+                        "id": 1
+                    }
                 ]
             },
-            "hygientists:": {
+            "hygientists": {
                 "availabilities": [
-
+                    {
+                        "title": 'Available',
+                        "startTime": new Date(new Date().setHours(12,0,0,0)),
+                        "endTime": new Date(new Date().setHours(14,0,0,0)),
+                        "resourceId": 'hygienist',
+                        "id": 3
+                    }
                 ]
             },
             "address": "4460 Highland Dr, Ste 400, Salt Lake City, UT 84124",
@@ -23,18 +41,15 @@ const demoDataBaseStructure = {
     }
 }
 
+
+
+
+
 module.exports={
     getData: (req,res) => {
-        console.log(req)
         res.status(200).send(demoDataBaseStructure)
     },
     postData: (req, res) => {
-
-    },
-    putData: (req, res) => {
-
-    },
-    deleteData: (req, res) => {
 
     }
 }

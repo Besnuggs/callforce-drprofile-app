@@ -15,16 +15,22 @@ const calendar = (state=calendarState, action) => {
     let delta={};
     switch(action.type){
         case GET_DEMO_DB_STARTED:
-            console.log(action.type, action, 'getting db')
+            console.log('Retrieving Database.')
             break;
         case GET_DEMO_DB_SUCCESS:
             const {payload: {clients}} = action;
             const name = Object.keys(clients).join(''),
                 owner = clients[name].owner,
                 phone = clients[name].phone,
-                address = clients[name].address
+                address = clients[name].address;
+
+            const doctorEvents = clients[name].doctors.availabilities,
+                assistantEvents = clients[name].assistants.availabilities,
+                hygientistEvents = clients[name].hygientists.availabilities,
+                consolidatedEvents = doctorEvents.concat(hygientistEvents, assistantEvents)
+            
             delta = {
-                events: {$set: []},
+                events: { $set: consolidatedEvents },
                 clinicInfo: {
                     owner: { $set: owner },
                     phone: { $set: phone },
@@ -35,7 +41,7 @@ const calendar = (state=calendarState, action) => {
             console.log(action, 'db success')
             break;
         case GET_DEMO_DB_FAILURE:
-            console.log(action, 'db failure')
+            console.error('%cFailure: Unable to retrieve db. Check Network tab.', 'color:red')
             break;
         default:
             return state;

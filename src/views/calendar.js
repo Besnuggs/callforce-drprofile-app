@@ -1,20 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux'
 import FullCalendar from '@fullcalendar/react';
+import Header from '../components/Header';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 import ModalPopup from '../components/Modal';
 import '../stylings/calendar.css';
 
 const Calendar = (props) => {
-    console.log(props)
-    const {events, clinicInfo, getDemoDb} = props
+    const {events, clinic, getDemoDb} = props
     useEffect(() => {
         getDemoDb()
     }, [])
 
     useEffect(() => {
-        console.log(clinicInfo)
-    }, [clinicInfo])
+        console.log(events, clinic)
+    }, [clinic, events])
 
     //Modal
     const [show, setShow] = useState(true)
@@ -34,6 +34,10 @@ const Calendar = (props) => {
             show={show}
             toggleModal={toggleModal}
         />
+
+        <Header 
+            clinicInfo={clinic}
+        />
        
         <FullCalendar 
             defaultView="resourceTimeGrid"
@@ -46,16 +50,14 @@ const Calendar = (props) => {
                         },
                     },
             }}
+            scrollTime={"6:00:00"}
             header={{
                 left: 'title',
                 center: '',
                 right: 'addAvailability today prev,next'
             }}
             
-            events={[
-            { title: 'Available', date: '2020-05-06', startTime: '11:00:00', endTime: '11:30:00', resourceId: 'doctor' },
-            { title: 'event 2', date: '2020-05-05', time: '12pm' }
-            ]}
+            events={events}
             resources={[{id: 'doctor', title: 'Doctor'}, {id: 'assistant', title: 'Assistant'}, {id: 'hygienist', title: 'Hygienist'}]}
             datesAboveResources={true}
             schedulerLicenseKey={'GPL-My-Project-Is-Open-Source'}
