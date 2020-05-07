@@ -1,4 +1,4 @@
-import {GET_DEMO_DB} from '../actions/calendarActions.js';
+import { GET_DEMO_DB } from '../actions/calendarActions.js';
 import update from 'immutability-helper';
 
 const calendarState = {

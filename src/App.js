@@ -1,14 +1,12 @@
 import React from 'react';
-import Header from './components/Header';
-import Calendar from './views/Calendar.js';
+import CalendarContainer from './containers/calendarContainer'
 import './App.css';
 
-function App() {
-
+function App(props) {
+ 
   return (
     <div className="App">
-      <Header />
-      <Calendar />
+      <CalendarContainer />
     </div>
   );
 }

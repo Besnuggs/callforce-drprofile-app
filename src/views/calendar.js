@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux'
 import FullCalendar from '@fullcalendar/react';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 import ModalPopup from '../components/Modal';
@@ -54,4 +55,6 @@ const Calendar = (props) => {
     )
 }
 
-export default Calendar
+
+
+export default connect() (Calendar)

@@ -3,10 +3,11 @@ import Calendar from '../views/Calendar';
 import {getDemoDb} from '../actions/calendarActions'
 
 const mapStateToProps = state => {
+    console.log(state)
     return {
-        dentistEvents: state,
-        assistantEvents: state,
-        hygientistsEvents: state
+        dentistEvents: state.calendar.dentists,
+        assistantEvents: state.calendar.assistants,
+        hygientistsEvents: state.calendar.hygientists
     };
 };
 
