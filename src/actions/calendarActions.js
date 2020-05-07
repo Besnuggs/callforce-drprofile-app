@@ -47,6 +47,7 @@ export function postDemoDB (event) {
            },
         }).then((res) => {
             const { data } = res;
+            console.log(data, 'data')
             dispatch(postDemoDBSuccess(data));
         }).catch((err) => {
             dispatch(postDemoDBFailure(err));
