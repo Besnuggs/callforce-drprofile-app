@@ -46,8 +46,11 @@ module.exports={
         res.status(200).send(demoDataBaseStructure)
     },
     postData: (req, res) => {
-        
-        
+        const { body } = req;
+        const resourceKey = body.resourceId + 's';
+
+        demoDataBaseStructure['clients']['Highland Family Practice'][resourceKey]['availabilities'].push(body)
+
         res.status(200).send(demoDataBaseStructure)
     }
 }
