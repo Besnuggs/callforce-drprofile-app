@@ -1,4 +1,5 @@
-import {GET_DEMO_DB} from '../actions/calendarActions.js'
+import {GET_DEMO_DB} from '../actions/calendarActions.js';
+import update from 'immutability-helper';
 
 const calendarState = {
     dentists: {events: 'first event'},
@@ -19,7 +20,7 @@ const calendar = (state=calendarState, action) => {
         default:
             return state;
     }
-    return delta ? delta : {}
+    return update(state, delta ? delta : {});
 }
 
 export default calendar;

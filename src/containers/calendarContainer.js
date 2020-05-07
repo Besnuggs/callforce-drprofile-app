@@ -4,9 +4,9 @@ import {getDemoDb} from '../actions/calendarActions'
 
 const mapStateToProps = state => {
     return {
-        dentistEvents: state.calendar,
-        assistantEvents: state.calendar,
-        hygientistsEvents: state.calendar
+        dentistEvents: state,
+        assistantEvents: state,
+        hygientistsEvents: state
     };
 };
 
