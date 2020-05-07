@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from 'react-time-picker';
-import { postDemoDB } from '../actions/calendarActions';
 
 const ModalPopup = (props) => {
   const {show, toggleModal, events, clinicInfo, nextId, postDemoDb} = props;
@@ -27,8 +26,8 @@ const ModalPopup = (props) => {
 
     const event={
       title: 'Available',
-      start: startTime,
-      end: endTime,
+      start: startDateTime,
+      end: endDateTime,
       resourceId: form.column,
       id: nextId
     }
@@ -47,10 +46,7 @@ const ModalPopup = (props) => {
   }
 
   function overlappingTimes(startDateTime, endDateTime){
-    let eventsOfChosenColumn,
-      getTimeRegex = /\d+:\d+:\d+/;
-    let startingTime = startDateTime.match(getTimeRegex)[0],
-      endingTime = endDateTime.match(getTimeRegex)[0];
+    let eventsOfChosenColumn;
 
     if( events ){
       eventsOfChosenColumn = events.filter(event => event.resourceId === form.column);
@@ -58,15 +54,14 @@ const ModalPopup = (props) => {
       return false;
     }
     for(let i = 0; i < eventsOfChosenColumn.length; i++){
-        const eventStartTime = eventsOfChosenColumn[i].start.match(getTimeRegex)[0],
-          eventStopTime = eventsOfChosenColumn[i].end.match(getTimeRegex)[0];
+        const eventStartTime = eventsOfChosenColumn[i].start,
+          eventStopTime = eventsOfChosenColumn[i].end;
 
-        console.log(eventStartTime, eventStopTime, startingTime, endingTime)
-        if(startingTime >= eventStartTime && startingTime <= eventStopTime){
+        if(startDateTime >= eventStartTime && startDateTime <= eventStopTime){
           return true;
-        } else if (endingTime >= eventStartTime && endingTime <= eventStopTime){
+        } else if (endDateTime >= eventStartTime && endDateTime <= eventStopTime){
           return true;
-        } else if (startingTime <= eventStartTime && endingTime >= eventStartTime){
+        } else if (startDateTime <= eventStartTime && endDateTime >= eventStartTime){
           return true;
         }
     }
