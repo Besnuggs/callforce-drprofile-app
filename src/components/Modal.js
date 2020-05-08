@@ -14,15 +14,21 @@ const ModalPopup = (props) => {
   const [endTime, setEndTime] = useState('07:00');
 
   function submitForm(){
-    //Edge Cases: StartTime is ahead of EndTime, or if the submitted time interferes with an existing time slot.
+    //Edge Cases: StartTime is ahead of EndTime, or if the submitted time interferes with an existing time slot, or if no time is specified for either start or end time.
+    if(!formTimesExist()){
+      return alert('Warning: Invalid Time Slot. Ensure start and end times exist.')
+    } else if(!formTimesValidator()){
+      return alert('Warning: Invalid Time Slot. Start time is later than end time.');
+    } 
+    
     const startDateTime = timeToDateFormatter(startTime),
       endDateTime = timeToDateFormatter(endTime);
 
-    if(!formTimesValidator()){
-      return alert('Warning: Invalid Time Slot. Start time is later than end time.');
-    } else if (overlappingTimes(startDateTime, endDateTime)){
+    if (overlappingTimes(startDateTime, endDateTime)){
       return alert('Warning: Time Slots overlap existing time slots.')
     }
+
+    
 
     const event={
       title: 'Available',
@@ -31,9 +37,13 @@ const ModalPopup = (props) => {
       resourceId: form.column,
       id: nextId
     }
-
     postDemoDb(event)
     handleToggle();
+  }
+
+  function formTimesExist(time){
+    if(!startTime || !endTime) return false;
+    return true;
   }
 
   function formTimesValidator(){
@@ -75,7 +85,6 @@ const ModalPopup = (props) => {
   }
 
   function timeToDateFormatter(time){
-    if (!time) return alert('Invalid Time Parameters. Check Start and End times.')
     const timeArray = time.match(/[0-9]{2}/g),
       hours = timeArray[0],
       minutes = timeArray[1];
@@ -91,6 +100,9 @@ const ModalPopup = (props) => {
   }
 
   function handleChange(e){
+    if(!e){
+      return setForm({...form, date: new Date()})
+    }
     if(e instanceof Date){
       setForm({...form, date: e});
     } else {
