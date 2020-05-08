@@ -44,10 +44,10 @@ const ModalPopup = (props) => {
 
   function getColorByResourceId(resourceId){
     if(resourceId === "hygienist"){
-      return "#3d7c47"
+      return "#AEF1B4"
     } else if (resourceId === "doctor"){
       return "#76c1d4"
-    } else {
+    } else if (resourceId === "assistant") {
       return "#f7f7f7"
     }
   }

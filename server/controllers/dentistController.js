@@ -34,7 +34,7 @@ const demoDataBaseStructure = {
                         "end": new Date(new Date().setHours(14,0,0,0)),
                         "resourceId": 'hygienist',
                         "id": 3,
-                        "backgroundColor": "#3d7c47"
+                        "backgroundColor": "#AEF1B4"
                     }
                 ]
             },

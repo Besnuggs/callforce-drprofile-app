@@ -59,7 +59,7 @@ const Calendar = (props) => {
                         },
                     },
                     changeToDayView: {
-                        text: 'daily',
+                        text: 'day',
                         click: function() {
                             let calendarApi = calendarRef.current.getApi();
                             calendarApi.changeView('resourceTimeGrid');
