@@ -3,13 +3,14 @@ import {connect} from 'react-redux'
 import FullCalendar from '@fullcalendar/react';
 import Header from '../components/Header';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
-import dayGridPlugin from '@fullcalendar/daygrid'
+import dayGridPlugin from '@fullcalendar/daygrid';
 import ModalPopup from '../components/Modal';
 import '../stylings/calendar.css';
 
 
 const Calendar = (props) => {
     const {events, clinic, nextId, getDemoDb, postDemoDb} = props
+    const calendarRef = React.createRef()
     useEffect(() => {
         getDemoDb()
     }, [])
@@ -47,6 +48,7 @@ const Calendar = (props) => {
        
         <FullCalendar 
             defaultView="resourceTimeGrid"
+            ref={calendarRef}
             plugins={[resourceTimeGridPlugin, dayGridPlugin]}
             allDaySlot={false}
             customButtons={{
@@ -56,18 +58,18 @@ const Calendar = (props) => {
                             toggleModal();
                         },
                     },
-                    // changeToMonthView: {
-                    //     text: 'calendar',
-                    //     click: function() {
-                    //         calendar.current.changeView('dayGridMonth')
-                            
-                    //     }
-                    // }
+                    changeToDayView: {
+                        text: 'daily',
+                        click: function() {
+                            let calendarApi = calendarRef.current.getApi();
+                            calendarApi.changeView('resourceTimeGrid');
+                        }
+                    }
             }}
             scrollTime={"6:00:00"}
             header={{
                 left: 'title',
-                center: 'dayGridMonth resourceTimeGrid',
+                center: 'dayGridMonth changeToDayView',
                 right: 'addAvailability today prev,next'
             }}
             
