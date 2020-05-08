@@ -24,7 +24,7 @@ const demoDataBaseStructure = {
                     }
                 ]
             },
-            "hygientists": {
+            "hygienists": {
                 "availabilities": [
                     {
                         "title": 'Available',

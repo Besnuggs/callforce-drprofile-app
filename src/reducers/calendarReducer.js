@@ -27,8 +27,8 @@ const calendar = (state=initialState, action) => {
 
             const doctorEvents = clients[name].doctors.availabilities,
                 assistantEvents = clients[name].assistants.availabilities,
-                hygientistEvents = clients[name].hygientists.availabilities,
-                consolidatedEvents = doctorEvents.concat(hygientistEvents, assistantEvents)
+                hygienistEvents = clients[name].hygienists.availabilities,
+                consolidatedEvents = doctorEvents.concat(hygienistEvents, assistantEvents)
             
             const nextEventId = consolidatedEvents.length + 1;    
             delta = {
@@ -55,7 +55,7 @@ const calendar = (state=initialState, action) => {
 
             const latestDoctorEvents = latestClient[latestClientName].doctors.availabilities,
             latestAssistantEvents = latestClient[latestClientName].assistants.availabilities,
-            latestHygientistEvents = latestClient[latestClientName].hygientists.availabilities,
+            latestHygientistEvents = latestClient[latestClientName].hygienists.availabilities,
             latestConsolidatedEvents = latestDoctorEvents.concat(latestHygientistEvents, latestAssistantEvents);
             
             const latestNextEventId = latestConsolidatedEvents.length + 1; 
