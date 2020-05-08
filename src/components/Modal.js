@@ -124,6 +124,7 @@ const ModalPopup = (props) => {
     return (
         <Modal
           show={show}
+          onHide={handleToggle}
           animation={true}
           size="md"
           aria-labelledby="contained-modal-title-vcenter"
