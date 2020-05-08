@@ -1,8 +1,13 @@
 <section>
 <h1>CallForce Dr Profile Demo 📆</h1>
 <p>
-This is a small, over-engineered application aimed to complete the code assessment for CallForce. More importantly, it would serve as a model for building a much larger scale application with the technologies listed belowed. Or rather, one approach for how one could go about creating a larger scale application suited for handling scheduling asynchronously with a supported app state like redux.
+This is a small, over-engineered application aimed to complete the code assessment for CallForce. More importantly, it could ostensisbly serve as a model for building a much larger scale application with the technologies listed belowed. Or rather, it could serve as one approach for how one could go about creating a larger scale application suited for handling scheduling asynchronously with a supported app state like redux.
 </p>
+<h3>A few notes:</h3>
+<ul>
+    <li>controller/dentistController has a json object serving as a simulated database object</li>
+    <li>This is a basic setup with a lot of techs - the architecture of a much larger scale would require route configuration and container setup accordingly.</li>
+</ul>
 
 <h1>Installation 💻:</h1>
 <ul>
@@ -37,6 +42,6 @@ As mentioned above, this demo is over-engineered. I am using the following front
     <li>axios</li>
 </ul>
 
-
+<p>📧 @ bradyesnuggs@gmail.com</p>
 </section>
 
