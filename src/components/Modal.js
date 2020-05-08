@@ -163,23 +163,27 @@ const ModalPopup = (props) => {
 
             <Form.Group as={Col} controlId="formGridStartTime">
               <Form.Label>Start:</Form.Label>
-              <TimePicker
-                name='startTime'
-                onChange={handleStartTime}
-                value={startTime}
-                disableClock={true}
-                
-              />
+              <div>
+                <TimePicker
+                  name='startTime'
+                  onChange={handleStartTime}
+                  value={startTime}
+                  disableClock={true}
+                  className="time-picker"
+                />
+              </div>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridEndTime">
               <Form.Label>End:</Form.Label>
-              <TimePicker
-                name='endTime'
-                onChange={handleEndTime}
-                value={endTime}
-                disableClock={true}
-              />
+              <div>
+                <TimePicker
+                  name='endTime'
+                  onChange={handleEndTime}
+                  value={endTime}
+                  disableClock={true}
+                />
+              </div>
             </Form.Group>
             
           </Form>
