@@ -150,6 +150,12 @@ const ModalPopup = (props) => {
             <Form.Group as={Col} controlId="formGridDate">
               <Form.Label>Date:</Form.Label>
               <DatePicker
+                customInput={
+                  <input
+                    style={{width: '436px', position: 'relative', left: 0, borderRadius: '4px', border: '1px solid #bab9b2'}}
+                    type="input"
+                  />
+                }
                 selected={form.date}
                 onChange={handleChange}
               />
@@ -162,6 +168,7 @@ const ModalPopup = (props) => {
                 onChange={handleStartTime}
                 value={startTime}
                 disableClock={true}
+                
               />
             </Form.Group>
 

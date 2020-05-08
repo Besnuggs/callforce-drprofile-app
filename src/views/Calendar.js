@@ -5,8 +5,6 @@ import Header from '../components/Header';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import ModalPopup from '../components/Modal';
-import '../stylings/calendar.css';
-
 
 const Calendar = (props) => {
     const {events, clinic, nextId, getDemoDb, postDemoDb} = props
