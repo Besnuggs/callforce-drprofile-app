@@ -34,6 +34,9 @@ const ModalPopup = (props) => {
 
     postDemoDb(event)
     toggleModal();
+    setForm({column: 'doctor', date: new Date()})
+    setStartTime('06:00')
+    setEndTime('07:00')
   }
 
   function formTimesValidator(){
@@ -68,6 +71,7 @@ const ModalPopup = (props) => {
   }
 
   function timeToDateFormatter(time){
+    if (!time) return alert('Invalid Time Parameters. Check Start and End times.')
     const timeArray = time.match(/[0-9]{2}/g),
       hours = timeArray[0],
       minutes = timeArray[1];
