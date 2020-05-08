@@ -50,7 +50,6 @@ const calendar = (state=initialState, action) => {
             console.log('Posting to db');
             break;
         case POST_DEMO_DB_SUCCESS:
-            console.log('Success', action)
             const latestClient = action.payload.clients
             const latestClientName = Object.keys(action.payload.clients).join('');
 
@@ -61,7 +60,6 @@ const calendar = (state=initialState, action) => {
             
             const latestNextEventId = latestConsolidatedEvents.length + 1; 
             
-            console.log(latestConsolidatedEvents, latestNextEventId)
             delta = {
                 events: { $set: latestConsolidatedEvents },
                 nextEventId: { $set: latestNextEventId }
