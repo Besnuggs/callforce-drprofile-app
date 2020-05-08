@@ -10,14 +10,14 @@ import TimePicker from 'react-time-picker';
 const ModalPopup = (props) => {
   const {show, toggleModal, events, clinicInfo, nextId, postDemoDb} = props;
   const [form, setForm] = useState({column: 'doctor', date: new Date()});
-  const [startTime, setStartTime] = useState('08:00');
-  const [endTime, setEndTime] = useState('18:00');
+  const [startTime, setStartTime] = useState('06:00');
+  const [endTime, setEndTime] = useState('07:00');
 
   function submitForm(){
     //Edge Cases: StartTime is ahead of EndTime, or if the submitted time interferes with an existing time slot.
     const startDateTime = timeToDateFormatter(startTime),
       endDateTime = timeToDateFormatter(endTime);
-    console.log(startDateTime, endDateTime, 'TIME')
+
     if(!formTimesValidator()){
       return alert('Warning: Invalid Time Slot. Start time is later than end time.');
     } else if (overlappingTimes(startDateTime, endDateTime)){
@@ -32,7 +32,6 @@ const ModalPopup = (props) => {
       id: nextId
     }
 
-    console.log(event)
     postDemoDb(event)
     toggleModal();
   }
@@ -69,11 +68,9 @@ const ModalPopup = (props) => {
   }
 
   function timeToDateFormatter(time){
-    console.log(time)
     const timeArray = time.match(/[0-9]{2}/g),
       hours = timeArray[0],
       minutes = timeArray[1];
-    console.log(hours, minutes, 'CHECKING')
     return new Date(new Date(form.date).setHours(hours, minutes, 0, 0)).toISOString();
   }
 

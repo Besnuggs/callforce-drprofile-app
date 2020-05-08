@@ -8,16 +8,16 @@ export const POST_DEMO_DB_SUCCESS = 'POST_DEMO_DB_SUCCESS';
 export const POST_DEMO_DB_FAILURE = 'POST_DEMO_DB_FAILURE';
 
 export function getDemoDB () {
+    console.log('GET DB')
     return (dispatch) => {
         dispatch(getDemoDBStart());
         return axios.get('/api/getDb/').then((res) => {
-            const {data} = res;
-            dispatch(getDemoDBSuccess(data))
+            const { data } = res;
+            dispatch(getDemoDBSuccess(data))     
         }).catch((err) => {
             dispatch(getDemoDBFailure(err))
-        })
-    }
-
+        });
+    };
 };
 
 const getDemoDBStart = () => ({
@@ -35,17 +35,9 @@ const getDemoDBFailure = (error) => ({
 })
 
 export function postDemoDB (event) {
-    console.log(event)
     return (dispatch) => {
         dispatch(postDemoDBStarted());
-        return axios({
-            method: 'POST',
-            url: '/api/postDb/',
-            data: event,
-            headers: {
-                'content-type': 'application/json',
-           },
-        }).then((res) => {
+        return axios.post('/api/postDb/', event).then((res) => {
             const { data } = res;
             console.log(data, 'data')
             dispatch(postDemoDBSuccess(data));

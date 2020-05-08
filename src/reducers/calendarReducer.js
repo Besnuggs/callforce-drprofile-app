@@ -50,22 +50,22 @@ const calendar = (state=calendarState, action) => {
             console.log('Posting to db');
             break;
         case POST_DEMO_DB_SUCCESS:
-            console.log('Success', action)
-            const latestDBUpdate = action.payload,
-                latestClientName = Object.keys(latestDBUpdate).join('');
+            console.log('Success', action.payload)
+            // const latestDBUpdate = action.payload.clients,
+            //     latestClientName = Object.keys(latestDBUpdate).join('');
 
-            const latestDoctorEvents = clients[latestClientName].doctors.availabilities,
-            latestAssistantEvents = clients[latestClientName].assistants.availabilities,
-            latestHygientistEvents = clients[latestClientName].hygientists.availabilities,
-            latestConsolidatedEvents = doctorEvents.concat(hygientistEvents, assistantEvents);
+            // const latestDoctorEvents = clients[latestClientName].doctors.availabilities,
+            // latestAssistantEvents = clients[latestClientName].assistants.availabilities,
+            // latestHygientistEvents = clients[latestClientName].hygientists.availabilities,
+            // latestConsolidatedEvents = doctorEvents.concat(hygientistEvents, assistantEvents);
             
-            const latestNextEventId = consolidatedEvents.length + 1; 
+            // const latestNextEventId = consolidatedEvents.length + 1; 
             
-            console.log(latestConsolidatedEvents, latestNextEventId)
-            delta = {
-                events: { $set: latestConsolidatedEvents },
-                nextEventId: { $set: nextEventId }
-            }
+            // console.log(latestConsolidatedEvents, latestNextEventId)
+            // delta = {
+            //     events: { $set: latestConsolidatedEvents },
+            //     nextEventId: { $set: nextEventId }
+            // }
             break;
         case POST_DEMO_DB_FAILURE:
             console.log('Failure', action.payload);
