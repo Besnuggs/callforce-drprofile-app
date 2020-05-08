@@ -33,10 +33,7 @@ const ModalPopup = (props) => {
     }
 
     postDemoDb(event)
-    toggleModal();
-    setForm({column: 'doctor', date: new Date()})
-    setStartTime('06:00')
-    setEndTime('07:00')
+    handleToggle();
   }
 
   function formTimesValidator(){
@@ -45,6 +42,13 @@ const ModalPopup = (props) => {
     } else {
       return true;
     };
+  }
+
+  function handleToggle(){
+    toggleModal()
+    setForm({column: 'doctor', date: new Date()})
+    setStartTime('06:00')
+    setEndTime('07:00')
   }
 
   function overlappingTimes(startDateTime, endDateTime){
@@ -151,7 +155,7 @@ const ModalPopup = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={toggleModal}>
+          <Button variant="secondary" onClick={handleToggle}>
             Close
           </Button>
           <Button variant="primary" onClick={submitForm}>
