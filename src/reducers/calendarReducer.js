@@ -1,7 +1,7 @@
 import { GET_DEMO_DB_STARTED, GET_DEMO_DB_SUCCESS, GET_DEMO_DB_FAILURE, POST_DEMO_DB_STARTED, POST_DEMO_DB_SUCCESS, POST_DEMO_DB_FAILURE } from '../actions/calendarActions.js';
 import update from 'immutability-helper';
 
-const calendarState = {
+const initialState = {
     events: [],
     clinicInfo: {
         owner: '',
@@ -12,7 +12,7 @@ const calendarState = {
     nextEventId: null
 }
 
-const calendar = (state=calendarState, action) => {
+const calendar = (state=initialState, action) => {
     let delta={};
     switch(action.type){
         case GET_DEMO_DB_STARTED:
@@ -50,22 +50,22 @@ const calendar = (state=calendarState, action) => {
             console.log('Posting to db');
             break;
         case POST_DEMO_DB_SUCCESS:
-            console.log('Success', action.payload)
-            // const latestDBUpdate = action.payload.clients,
-            //     latestClientName = Object.keys(latestDBUpdate).join('');
+            console.log('Success', action)
+            const latestClient = action.payload.clients
+            const latestClientName = Object.keys(action.payload.clients).join('');
 
-            // const latestDoctorEvents = clients[latestClientName].doctors.availabilities,
-            // latestAssistantEvents = clients[latestClientName].assistants.availabilities,
-            // latestHygientistEvents = clients[latestClientName].hygientists.availabilities,
-            // latestConsolidatedEvents = doctorEvents.concat(hygientistEvents, assistantEvents);
+            const latestDoctorEvents = latestClient[latestClientName].doctors.availabilities,
+            latestAssistantEvents = latestClient[latestClientName].assistants.availabilities,
+            latestHygientistEvents = latestClient[latestClientName].hygientists.availabilities,
+            latestConsolidatedEvents = latestDoctorEvents.concat(latestHygientistEvents, latestAssistantEvents);
             
-            // const latestNextEventId = consolidatedEvents.length + 1; 
+            const latestNextEventId = latestConsolidatedEvents.length + 1; 
             
-            // console.log(latestConsolidatedEvents, latestNextEventId)
-            // delta = {
-            //     events: { $set: latestConsolidatedEvents },
-            //     nextEventId: { $set: nextEventId }
-            // }
+            console.log(latestConsolidatedEvents, latestNextEventId)
+            delta = {
+                events: { $set: latestConsolidatedEvents },
+                nextEventId: { $set: latestNextEventId }
+            }
             break;
         case POST_DEMO_DB_FAILURE:
             console.log('Failure', action.payload);
