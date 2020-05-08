@@ -28,8 +28,6 @@ const ModalPopup = (props) => {
       return alert('Warning: Time Slots overlap existing time slots.')
     }
 
-    
-
     const event={
       title: 'Available',
       start: startDateTime,

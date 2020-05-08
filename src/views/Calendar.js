@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux'
 import FullCalendar from '@fullcalendar/react';
-import Header from '../components/Header';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import ModalPopup from '../components/Modal';
@@ -18,7 +17,7 @@ const Calendar = (props) => {
     }, [clinic, events])
 
     //Modal
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(false)
 
     function toggleModal(){
         if ( show ){
@@ -28,7 +27,6 @@ const Calendar = (props) => {
         }
     }
 
-    
     return(
         <>
         <ModalPopup 
@@ -38,10 +36,6 @@ const Calendar = (props) => {
             clinicInfo={clinic}
             nextId={nextId}
             postDemoDb={postDemoDb}
-        />
-
-        <Header 
-            clinicInfo={clinic}
         />
        
         <FullCalendar 
@@ -70,17 +64,14 @@ const Calendar = (props) => {
                 center: 'dayGridMonth changeToDayView',
                 right: 'addAvailability today prev,next'
             }}
-            
             events={events}
             resources={[{id: 'doctor', title: 'Doctor'}, {id: 'assistant', title: 'Assistant'}, {id: 'hygienist', title: 'Hygienist'}]}
             datesAboveResources={true}
             schedulerLicenseKey={'GPL-My-Project-Is-Open-Source'}
         />
-
         </>
     )
 }
-
 
 
 export default connect() (Calendar)
