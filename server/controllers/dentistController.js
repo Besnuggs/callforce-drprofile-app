@@ -9,7 +9,8 @@ const demoDataBaseStructure = {
                         "start": new Date(new Date().setHours(14,0,0,0)),
                         "end": new Date(new Date().setHours(16,0,0,0)),
                         "resourceId": 'assistant',
-                        "id": 2
+                        "id": 2,
+                        "backgroundColor": "#f7f7f7"
                     }
                 ]
             },
@@ -20,7 +21,8 @@ const demoDataBaseStructure = {
                         "start": new Date(new Date().setHours(8,0,0,0)),
                         "end": new Date(new Date().setHours(12,0,0,0)),
                         "resourceId": 'doctor',
-                        "id": 1
+                        "id": 1,
+                        "backgroundColor": "#76c1d4"
                     }
                 ]
             },
@@ -31,7 +33,8 @@ const demoDataBaseStructure = {
                         "start": new Date(new Date().setHours(12,0,0,0)),
                         "end": new Date(new Date().setHours(14,0,0,0)),
                         "resourceId": 'hygienist',
-                        "id": 3
+                        "id": 3,
+                        "backgroundColor": "#3d7c47"
                     }
                 ]
             },

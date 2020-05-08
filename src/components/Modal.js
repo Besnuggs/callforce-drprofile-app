@@ -20,7 +20,7 @@ const ModalPopup = (props) => {
     } else if(!formTimesValidator()){
       return alert('Warning: Invalid Time Slot. Start time is later than end time.');
     } 
-    
+
     const startDateTime = timeToDateFormatter(startTime),
       endDateTime = timeToDateFormatter(endTime);
 
@@ -35,10 +35,21 @@ const ModalPopup = (props) => {
       start: startDateTime,
       end: endDateTime,
       resourceId: form.column,
-      id: nextId
+      id: nextId,
+      backgroundColor: getColorByResourceId(form.column)
     }
     postDemoDb(event)
     handleToggle();
+  }
+
+  function getColorByResourceId(resourceId){
+    if(resourceId === "hygienist"){
+      return "#3d7c47"
+    } else if (resourceId === "doctor"){
+      return "#76c1d4"
+    } else {
+      return "#f7f7f7"
+    }
   }
 
   function formTimesExist(time){
