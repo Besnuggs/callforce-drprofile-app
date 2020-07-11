@@ -58,7 +58,7 @@ const Calendar = (props) => {
                         }
                     }
             }}
-            scrollTime={"6:00:00"}
+            scrollTime={'06:00:00'}
             header={{
                 left: 'title',
                 center: 'dayGridMonth changeToDayView',
